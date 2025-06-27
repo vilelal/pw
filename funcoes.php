@@ -56,7 +56,6 @@ function CreateTask($dados){
         echo "<input type='hidden' name='id' value='" . $tarefa['id'] . "'>";
         echo "<button type='submit' value='Excluir'>Excluir</button>";
         echo "</form>";
-        
         echo "<a href='editar.php?id=" . $tarefa['id'] . "'>Editar</a>";
         echo "</div>";
         echo "</div>";
@@ -71,7 +70,7 @@ function CreateTask($dados){
     function UpdateTask($dados){
         $tarefas = lerTarefas();
 
-        foreach ($tarefas as $tarefa){
+        foreach ($tarefas as &$tarefa){
             if ($tarefa['id'] == $dados['id']) {
                 $tarefa['titulo'] = $dados['titulo'];
                 $tarefa['descricao'] = $dados['descricao'];
@@ -82,6 +81,7 @@ function CreateTask($dados){
         }
         $json = json_encode($tarefas,JSON_PRETTY_PRINT);
         file_put_contents(Task_File, $json);
+        header('Location: index.php');
         exit();
     }
 

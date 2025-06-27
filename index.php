@@ -1,6 +1,5 @@
 <?php
     include 'funcoes.php';
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $acao = $_POST['acao'] ?? '';
         
@@ -12,7 +11,6 @@
             DeleteTask($_POST['id']);
         }
     }
-    
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +26,7 @@
             font-family: Arial, Helvetica, sans-serif;
             margin: 0 auto; 
             max-width: 800px;
-            background-color: #f4f4f4; 
+            background-color:rgba(231, 228, 228, 0.69);
             padding: 20px; 
             box-sizing: border-box; 
 
@@ -138,6 +136,10 @@
             text-align: center;
             white-space: nowrap; /* Evita que o texto dos botões quebre */
         }
+        a{
+            font-size: 14px;
+        }
+        
     </style>
 </head>
 
@@ -150,6 +152,7 @@
     <form action="index.php" method="post">
 
         <h2>Criar Tarefa</h2>
+
         <input type="hidden" name="acao" value="criar">
 
         <label for="titulo">Título: </label>
@@ -159,10 +162,10 @@
        <textarea name="descricao" placeholder="Digite a descrição da tarefa" id="descricao"></textarea required> 
 
         <label for="data">Data: </label>
-        <input type="date" name="data" id="data">
+        <input type="date" name="data" id="data" required>
 
         <label for="hora">Hora: </label>
-        <input type="time" name="hora">
+        <input type="time" name="hora" required>
 
 
         <button type="submit" value="Criar">Criar tarefa</button>
@@ -175,8 +178,11 @@
     <h2>Tarefas</h2>
 
     <?php
-    PrintTask();
-    ?>
+
+
+      PrintTask();
+?>
+  
 </body>
 
 </html>
